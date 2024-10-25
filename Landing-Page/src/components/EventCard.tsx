@@ -82,7 +82,7 @@ function EventCard({
                   <p className="text-lg text-slate-500">{eventDate}</p>
                 </div>
                 <br />
-                <p className="text-white">{eventAbout}</p>
+                <p className="text-white md:text-xl font-serif">{eventAbout}</p>
               </div>
               { (!upcoming && eventPhotos) && <div>
                 <p className="text-white my-4 text-xl">Glimpse:</p>
@@ -101,7 +101,7 @@ function EventCard({
               <div className="flex justify-center">
                 <Link to={registerLink}>
                   <Button
-                    className={`${!upcoming ? "bg-[#3EC256] hover:bg-green-700 animate-none" : "bg-red-600 hover:bg-red-800 animate-bounce"} mt-8 md:mt-0 text-md`}
+                    className={`${!upcoming ? "bg-[#3EC256] hover:bg-green-700 animate-none" : "bg-red-600 hover:bg-red-800 animate-bounce"} mt-8 md:mt-0 text-md font-mono`}
                   >
                     {upcoming ? "Register now" : "View more"}
                   </Button>
