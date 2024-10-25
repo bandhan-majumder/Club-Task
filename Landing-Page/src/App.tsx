@@ -15,6 +15,7 @@ interface upcomingEventsInterface {
   // will hardcode the below two for a reason
   // flip: boolean;
   // upcoming: boolean; // upcoming -> true for upcoming events, false for past events
+  eventPhotos: string[]
 }
 
 interface pastEventsInterface {
@@ -29,25 +30,27 @@ interface pastEventsInterface {
   // will hardcode the below two for a reason
   // flip: boolean;
   // upcoming: boolean; // upcoming -> true for upcoming events, false for past events
+  eventPhotos: string[]
 }
 
 function App() {
-  const upComingEventsArr: upcomingEventsInterface[] = upComingEvents
-  const pastEventsArr: pastEventsInterface[] = pastEvents
+  const upComingEventsArr: upcomingEventsInterface[] = upComingEvents;
+  const pastEventsArr: pastEventsInterface[] = pastEvents;
 
   return (
     <BrowserRouter>
-      <div className="bg-black min-h-screen">
+      <div className="bg-black min-h-screen pt-5">
         {/* <Header /> */}
-        <div className="text-center">
-          <p className="text-[#3EC256] text-4xl font-semibold underline underline-offset-4 py-5">
-            All Events
-          </p>
+        <div className="text-center flex justify-center">
+          <p className="text-white text-4xl font-bold">Check our</p>
+          <p className="text-[#3EC256] text-4xl font-bold py-5">All Events</p>
         </div>
         <br />
         <div className="flex justify-center items-center">
           <div className="lg:max-w-[50vw] rounded-xl px-1 py-2 max-w-[90vw]">
-            <p className="text-white text-3xl underline mb-2">Our Aim:</p>
+            <p className="text-white text-3xl underline underline-offset-4 mb-3">
+              Our Aim:
+            </p>
             <p className="text-white">
               At BashCraft, we aim to map the gap between theoretical knowledge
               and real life executability. Through a variety of engaging events,
@@ -69,22 +72,23 @@ function App() {
             </p>
           </div>
           <div>
-            {upComingEventsArr.map((event,index)=>(
+            {upComingEventsArr.map((event, index) => (
               <div key={index}>
-              <EventCard
-              imgUrl={event.imgUrl}
-              guestDetails={event.guestDetails}
-              guestName={event.guestName}
-              linkedInUrl={event.linkedInUrl}
-              twitterUrl={event.twitterUrl}
-              eventDate={event.eventDate}
-              registerLink={event.registerLink}
-              eventAbout={event.eventAbout}
-              flip={index%2 == 0} // flip them one by one
-              upcoming={true} // hardcoding as all of these will be upcoming events
-            />
-            <br />
-            </div>
+                <EventCard
+                  imgUrl={event.imgUrl}
+                  guestDetails={event.guestDetails}
+                  guestName={event.guestName}
+                  linkedInUrl={event.linkedInUrl}
+                  twitterUrl={event.twitterUrl}
+                  eventDate={event.eventDate}
+                  registerLink={event.registerLink}
+                  eventAbout={event.eventAbout}
+                  flip={index % 2 == 0} // flip them one by one
+                  upcoming={true} // hardcoding as all of these will be upcoming events
+                  eventPhotos={event.eventPhotos}
+                />
+                <br />
+              </div>
             ))}
           </div>
         </div>
@@ -96,22 +100,23 @@ function App() {
             </p>
           </div>
           <div>
-            {pastEventsArr.map((event,index)=>(
+            {pastEventsArr.map((event, index) => (
               <div key={index}>
-              <EventCard
-              imgUrl={event.imgUrl}
-              guestDetails={event.guestDetails}
-              guestName={event.guestName}
-              linkedInUrl={event.linkedInUrl}
-              twitterUrl={event.twitterUrl}
-              eventDate={event.eventDate}
-              registerLink={event.registerLink}
-              eventAbout={event.eventAbout}
-              flip={index%2 == 0} // flip them one by one
-              upcoming={false} // hardcoding as all of these will be upcoming events
-            />
-            <br />
-            </div>
+                <EventCard
+                  imgUrl={event.imgUrl}
+                  guestDetails={event.guestDetails}
+                  guestName={event.guestName}
+                  linkedInUrl={event.linkedInUrl}
+                  twitterUrl={event.twitterUrl}
+                  eventDate={event.eventDate}
+                  registerLink={event.registerLink}
+                  eventAbout={event.eventAbout}
+                  flip={index % 2 == 0} // flip them one by one
+                  upcoming={false} // hardcoding as all of these will be upcoming events
+                  eventPhotos={event.eventPhotos}
+                />
+                <br />
+              </div>
             ))}
           </div>
         </div>
