@@ -46,14 +46,14 @@ function MobileNav() {
 
 export default function Header() {
   return (
-    <div className="w-max-[75%] flex justify-center mb-5 my-5">
-      <div className="fixed top-2 bg-black bg-opacity-20 backdrop-blur-md border-b border-white border-opacity-20 shadow-lg rounded-full h-auto">
+    <div className="md:w-max-[75%] w-max-[90vw] flex justify-center mb-5 my-5">
+      <div className="static top-2 bg-white bg-opacity-40 backdrop-blur-md border-b border-white border-opacity-20 shadow-lg rounded-full h-auto">
         <header className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
-              <NavLink to="/" className="flex-shrink-0">
-                <img src="https://avatars.githubusercontent.com/u/169580113?s=200&v=4" className="md:w-[5vw]
-                w-[10vw] rounded-full font-bold mr-9" />
+              <NavLink to="/">
+                <img src="https://avatars.githubusercontent.com/u/169580113?s=200&v=4" className="md:w-[3vw]
+                max-w-[10vw] rounded-full font-bold mr-9" />
               </NavLink>
             </div>
 

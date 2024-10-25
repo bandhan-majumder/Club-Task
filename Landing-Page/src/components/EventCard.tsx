@@ -3,11 +3,6 @@ import { useEffect, useState } from "react";
 import ImageCard from "./ImageCard.tsx";
 import { Button } from "./ui/button.tsx";
 import { Link } from "react-router-dom";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-  } from "@/components/ui/carousel.tsx";
 
 interface eventCardDetails {
   imgUrl: string;
@@ -15,12 +10,12 @@ interface eventCardDetails {
   guestDetails: string;
   linkedInUrl: string;
   twitterUrl?: string;
+  eventName: string,
   eventAbout: string;
   registerLink: string;
   eventDate: string;
   flip: boolean;
   upcoming: boolean; // upcoming -> true for upcoming events, false for past events
-  eventPhotos?: string[]
 }
 
 function EventCard({
@@ -29,12 +24,12 @@ function EventCard({
   guestDetails,
   linkedInUrl,
   twitterUrl,
+  eventName,
   eventAbout,
   registerLink,
   eventDate,
   flip: initialFlip,
   upcoming,
-  eventPhotos
 }: eventCardDetails) {
   const [flip, setFlip] = useState(initialFlip);
   useEffect(() => {
@@ -55,9 +50,9 @@ function EventCard({
     <>
       <div className="flex justify-center items-center flex-col">
         <div className="md:flex flex-row lg:max-w-[70vw] max-w-[90vw]">
-          <div className="md:flex flex-row gap-3 md:justify-around md:w-[65vw]">
+          <div className="md:flex flex-row gap-3 md:justify-around md:w-[65vw] md:py-10 rounded-3xl">
             {!flip && (
-              <div className="md:flex flex-row justify-center md:gap-3 md:max-h-[58vh]">
+              <div className="md:flex flex-row justify-center md:gap-0 md:max-h-[58vh]">
                 <div className="md:w-[30vw]">
                   <ImageCard
                     imgUrl={`${imgUrl}`}
@@ -74,30 +69,20 @@ function EventCard({
             )}
             <div className="md:max-w-[30vw] max-w-[90vw] border-solid border-1 border-gray-600 rounded-xl px-3 py-3 flex flex-col justify-around mt-4 md:mt-0">
               <div>
-                <p className="text-xl text-white underline underline-offset-4">
+                <p className="text-xl text-red-600 underline underline-offset-4">
                   About:
                 </p>
                 <div className="flex justify-start gap-1">
-                  <p className="text-lg text-slate-500">Date:</p>
-                  <p className="text-lg text-slate-500">{eventDate}</p>
+                  <p className="text-slate-300 text-xl ">Event Name:</p>
+                  <p className="text-white text-xl font-semibold">{eventName}</p>
+                </div>
+                <div className="flex justify-start gap-1">
+                  <p className="text-lg text-slate-400">Date:</p>
+                  <p className="text-lg text-slate-400 font-semibold">{eventDate}</p>
                 </div>
                 <br />
                 <p className="text-white md:text-xl font-serif">{eventAbout}</p>
               </div>
-              { (!upcoming && eventPhotos) && <div>
-                <p className="text-white my-4 text-xl">Glimpse:</p>
-                <Carousel>
-                  <CarouselContent>
-                    {eventPhotos.map((_, index) => (<CarouselItem className="basis-1/3">
-                      <img
-                        src={eventPhotos[index]}
-                        alt=""
-                      />
-                    </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
-              </div>}
               <div className="flex justify-center">
                 <Link to={registerLink}>
                   <Button
@@ -109,7 +94,7 @@ function EventCard({
               </div>
             </div>
             {flip && (
-              <div className="md:flex flex-row justify-center md:gap-3 md:max-h-[58vh]">
+              <div className="md:flex flex-row justify-center md:gap-0 md:max-h-[58vh]">
                 <div className="md:flex justify-center items-center hidden">
                   <div className="w-1.5 h-[30vh]  hidden bg-green-600 md:block"></div>
                 </div>

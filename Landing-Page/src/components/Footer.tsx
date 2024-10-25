@@ -6,7 +6,7 @@ import {GoArrowUpRight } from "react-icons/go";
 function Footer() {
   return (
     <div className="md:flex items-center flex-col text-white shadow-lg">
-        <div className="md:flex flex-row justify-between md:w-[70vw] gap-4 pl-3 md:h-[20vh] md:text-xl font-extralight">
+        <div className="md:flex flex-row justify-between md:w-[70vw] gap-4 pl-3 md:h-[20vh] md:text-xl font-mono">
           <div className="flex flex-col md:max-w-[80vw] gap-2 mb-4 ">
             <div className="md:max-w-[10vw]">
               <img
