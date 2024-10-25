@@ -15,7 +15,6 @@ interface upcomingEventsInterface {
   // will hardcode the below two for a reason
   // flip: boolean;
   // upcoming: boolean; // upcoming -> true for upcoming events, false for past events
-  eventPhotos: string[]
 }
 
 interface pastEventsInterface {
@@ -30,7 +29,7 @@ interface pastEventsInterface {
   // will hardcode the below two for a reason
   // flip: boolean;
   // upcoming: boolean; // upcoming -> true for upcoming events, false for past events
-  eventPhotos: string[]
+  eventPhotos?: string[]
 }
 
 function App() {
@@ -52,15 +51,14 @@ function App() {
               Our Aim:
             </p>
             <p className="text-white">
-              At BashCraft, we aim to map the gap between theoretical knowledge
+              At BashCraft, we aim to <span className="text-red-600">map the gap</span> between theoretical knowledge
               and real life executability. Through a variety of engaging events,
               workshops, and hands-on projects, we provide students with
               opportunities to apply their skills and learn new ones in a
               practical and dynamic environment. Despite being a young club,
               we’ve never let that hold us back. Our drive and passion have
-              enabled us to successfully organize and execute numerous offline
-              and online events, with our flagship event bringing over 300
-              in-person attendees.
+              enabled us to successfully organize and execute numerous <span className="text-red-600">offline
+              and online events</span>, with our flagship event bringing over <span className="text-red-600">300</span> in-person attendees.
             </p>
           </div>
         </div>
@@ -85,7 +83,6 @@ function App() {
                   eventAbout={event.eventAbout}
                   flip={index % 2 == 0} // flip them one by one
                   upcoming={true} // hardcoding as all of these will be upcoming events
-                  eventPhotos={event.eventPhotos}
                 />
                 <br />
               </div>

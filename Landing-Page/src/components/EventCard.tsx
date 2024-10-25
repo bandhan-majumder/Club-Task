@@ -20,7 +20,7 @@ interface eventCardDetails {
   eventDate: string;
   flip: boolean;
   upcoming: boolean; // upcoming -> true for upcoming events, false for past events
-  eventPhotos: string[]
+  eventPhotos?: string[]
 }
 
 function EventCard({
@@ -84,8 +84,8 @@ function EventCard({
                 <br />
                 <p className="text-white">{eventAbout}</p>
               </div>
-              { !upcoming && <div>
-                <p className="text-white my-4 text-xl">Photos:</p>
+              { (!upcoming && eventPhotos) && <div>
+                <p className="text-white my-4 text-xl">Glimpse:</p>
                 <Carousel>
                   <CarouselContent>
                     {eventPhotos.map((_, index) => (<CarouselItem className="basis-1/3">
@@ -101,9 +101,7 @@ function EventCard({
               <div className="flex justify-center">
                 <Link to={registerLink}>
                   <Button
-                    className={`bg-[#3EC256] text-md hover:bg-green-700 mt-8 md:mt-01 ${
-                      upcoming ? "animate-bounce" : "animate-none"
-                    }`}
+                    className={`${!upcoming ? "bg-[#3EC256] hover:bg-green-700 animate-none" : "bg-red-600 hover:bg-red-800 animate-bounce"} mt-8 md:mt-0 text-md`}
                   >
                     {upcoming ? "Register now" : "View more"}
                   </Button>
