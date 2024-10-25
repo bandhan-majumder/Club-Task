@@ -1,7 +1,7 @@
 ![alt text](image.png)
 
 ## About
-#### Made with React, Shadcn, react-icons and tailwind. Made an `EventCard` which will be iterated through map of links. There are two variation. Based on the flip, variation is selected.
+#### A fully responsive Landing page, made with React, Shadcn, react-icons and tailwind and TypeScript. Made an `EventCard` which will be iterated through map of links. There are two variation. Based on the flip, variation is selected.
 
 ## Run locally
 ```
