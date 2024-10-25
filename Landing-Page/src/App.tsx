@@ -1,19 +1,39 @@
 import EventCard from "./components/EventCard.tsx";
 import { BrowserRouter } from "react-router-dom";
+import { pastEvents } from "./pastEvents.ts";
+import { upComingEvents } from "./upComingEvents.ts";
+
+interface upcomingEventsInterface {
+  imgUrl: string;
+  guestName: string;
+  guestDetails: string;
+  linkedInUrl: string;
+  twitterUrl?: string;
+  eventAbout: string;
+  registerLink: string;
+  eventDate: string;
+  // will hardcode the below two for a reason
+  // flip: boolean;
+  // upcoming: boolean; // upcoming -> true for upcoming events, false for past events
+}
+
+interface pastEventsInterface {
+  imgUrl: string;
+  guestName: string;
+  guestDetails: string;
+  linkedInUrl: string;
+  twitterUrl?: string;
+  eventAbout: string;
+  registerLink: string;
+  eventDate: string;
+  // will hardcode the below two for a reason
+  // flip: boolean;
+  // upcoming: boolean; // upcoming -> true for upcoming events, false for past events
+}
 
 function App() {
-  const upComingEvent1 = {
-    imgUrl:
-      "https://res.cloudinary.com/dcwsgwsfw/image/upload/v1727894047/bash/B5_iqxqmw.jpg",
-    guestName: "special guest",
-    guestDetails: "IIT furfurinagar",
-    linkedInUrl: "url.com",
-    twitterUrl: "url.com",
-    eventAbout:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima consectetur id illum architecto consequuntur, enim perspiciatis animi libero ad fugiat maiores quos. Adipisci doloribus non ducimus. Omnis quisquam velit at provident ut corporis iure deserunt?",
-    registerLink: "xo.com",
-    eventDate: "12:1:24",
-  };
+  const upComingEventsArr: upcomingEventsInterface[] = upComingEvents
+  const pastEventsArr: pastEventsInterface[] = pastEvents
 
   return (
     <BrowserRouter>
@@ -21,12 +41,13 @@ function App() {
         {/* <Header /> */}
         <div className="text-center">
           <p className="text-[#3EC256] text-4xl font-semibold underline underline-offset-4 py-5">
-            Events
+            All Events
           </p>
         </div>
         <br />
         <div className="flex justify-center items-center">
           <div className="lg:max-w-[50vw] rounded-xl px-1 py-2 max-w-[90vw]">
+            <p className="text-white text-3xl underline mb-2">Our Aim:</p>
             <p className="text-white">
               At BashCraft, we aim to map the gap between theoretical knowledge
               and real life executability. Through a variety of engaging events,
@@ -43,36 +64,56 @@ function App() {
 
         <div className="flex justify-center items-center flex-col">
           <div className="text-center">
-            <p className="text-[#3EC256] text-4xl font-semibold underline underline-offset-4 my-10">
+            <p className="text-[#3EC256] text-4xl font-semibold underline underline-offset-4 my-10 animate-pulse">
               Upcoming Events
             </p>
           </div>
           <div>
-<EventCard
-            imgUrl={upComingEvent1.imgUrl}
-            guestDetails={upComingEvent1.guestDetails}
-            guestName={upComingEvent1.guestName}
-            linkedInUrl={upComingEvent1.linkedInUrl}
-            twitterUrl={upComingEvent1.twitterUrl}
-            eventDate={upComingEvent1.eventDate}
-            registerLink={upComingEvent1.registerLink}
-            eventAbout={upComingEvent1.eventAbout}
-            flip={true}
-          />
-          <br />
-          <EventCard
-            imgUrl={upComingEvent1.imgUrl}
-            guestDetails={upComingEvent1.guestDetails}
-            guestName={upComingEvent1.guestName}
-            linkedInUrl={upComingEvent1.linkedInUrl}
-            twitterUrl={upComingEvent1.twitterUrl}
-            eventDate={upComingEvent1.eventDate}
-            registerLink={upComingEvent1.registerLink}
-            eventAbout={upComingEvent1.eventAbout}
-            flip={false}
-          />
+            {upComingEventsArr.map((event,index)=>(
+              <div key={index}>
+              <EventCard
+              imgUrl={event.imgUrl}
+              guestDetails={event.guestDetails}
+              guestName={event.guestName}
+              linkedInUrl={event.linkedInUrl}
+              twitterUrl={event.twitterUrl}
+              eventDate={event.eventDate}
+              registerLink={event.registerLink}
+              eventAbout={event.eventAbout}
+              flip={index%2 == 0} // flip them one by one
+              upcoming={true} // hardcoding as all of these will be upcoming events
+            />
+            <br />
+            </div>
+            ))}
           </div>
-          
+        </div>
+
+        <div className="flex justify-center items-center flex-col">
+          <div className="text-center">
+            <p className="text-[#3EC256] text-4xl font-semibold underline underline-offset-4 my-10">
+              Our Past Events
+            </p>
+          </div>
+          <div>
+            {pastEventsArr.map((event,index)=>(
+              <div key={index}>
+              <EventCard
+              imgUrl={event.imgUrl}
+              guestDetails={event.guestDetails}
+              guestName={event.guestName}
+              linkedInUrl={event.linkedInUrl}
+              twitterUrl={event.twitterUrl}
+              eventDate={event.eventDate}
+              registerLink={event.registerLink}
+              eventAbout={event.eventAbout}
+              flip={index%2 == 0} // flip them one by one
+              upcoming={false} // hardcoding as all of these will be upcoming events
+            />
+            <br />
+            </div>
+            ))}
+          </div>
         </div>
       </div>
     </BrowserRouter>

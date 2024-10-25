@@ -1,4 +1,5 @@
 import "../App.css";
+import { useEffect, useState } from "react";
 import ImageCard from "./ImageCard.tsx";
 import { Button } from "./ui/button.tsx";
 import { Link } from "react-router-dom";
@@ -13,6 +14,7 @@ interface eventCardDetails {
   registerLink: string;
   eventDate: string;
   flip: boolean;
+  upcoming: boolean; // upcoming -> true for upcoming events, false for past events
 }
 
 function EventCard({
@@ -24,8 +26,25 @@ function EventCard({
   eventAbout,
   registerLink,
   eventDate,
-  flip,
+  flip: initialFlip,
+  upcoming
 }: eventCardDetails) {
+    const [flip, setFlip] = useState(initialFlip);
+    useEffect(() => {
+      const mediaQuery = window.matchMedia("(max-width: 768px)"); // checks if the device is mobile or any other smaller sized screen or not
+  
+      const handleScreenResize = () => {
+        if (mediaQuery.matches) {
+          setFlip(false); // Set flip to false for screen sizes smaller than 'md'
+        } else {
+          setFlip(initialFlip); // Revert to the initial value when screen size is above 'md'
+        }
+      };
+  
+      // Set the initial value based on the current screen size
+      handleScreenResize();
+
+    }, [initialFlip]);
   return (
     <>
         <div className="flex justify-center items-center flex-col">
@@ -59,8 +78,8 @@ function EventCard({
                 </div>
                 <div className="flex justify-center">
                   <Link to={registerLink}>
-                    <Button className="bg-[#3EC256] text-md hover:bg-green-700 mt-8 md:mt-0">
-                      Register now
+                    <Button className={`bg-[#3EC256] text-md hover:bg-green-700 mt-8 md:mt-01 ${upcoming? "animate-bounce" : "animate-none"}`}>
+                      {upcoming ? "Register now": "Check moments"}
                     </Button>
                   </Link>
                 </div>
